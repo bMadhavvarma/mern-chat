@@ -4,7 +4,7 @@ const chats = require('./data/data.js');
 const cors = require('cors');
 app.use(cors());
 app.get('/', (req, res) => {
-  res.send('Hello');
+  res.send('app is runnng successfully');
 });
 
 app.get('/api', (req, res) => {
