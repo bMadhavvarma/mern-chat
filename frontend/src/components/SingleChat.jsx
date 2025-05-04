@@ -12,7 +12,7 @@ const SingleChat = () => {
       .catch((err) => console.error(err));
   }, [id]);
 
-  if (!chat) return <p>Loading...</p>;
+  if (!chat) return <p>Loading....</p>;
 
   return (
     <div>
