@@ -1,26 +1,20 @@
 const express = require('express');
-const app = express();
-const chats = require('./data/data.js');
 const cors = require('cors');
+const connectDB = require('./db/ConnectDB');
+const userRoutes = require('./routes/UserRoutes.js');
+
+const app = express();
+connectDB();
+
 app.use(cors());
+app.use(express.json()); // important for parsing JSON bodies
+
 app.get('/', (req, res) => {
-  res.send('app is runnng successfully');
+  res.send('App is running successfully');
 });
 
-app.get('/api', (req, res) => {
-  res.send(chats);
-});
-
-// Get single chat by ID
-app.get('/api/:id', (req, res) => {
-  const singleChat = chats.find((chat) => chat._id === req.params.id);
-
-  if (!singleChat) {
-    return res.status(404).send({ message: 'Chat not found' });
-  }
-
-  res.send(singleChat);
-});
+// Mount routes
+app.use('/api/user', userRoutes);
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
